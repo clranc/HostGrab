@@ -1,9 +1,22 @@
 #IP and Domain linked list handler
 import os.path
+import ipaddress
+import textwrap
 from IpDmLL import IpDmList
+
+#IP Validator
+def ipChk(ip):
+    try:
+        ipaddress.ip_address(str(ip))
+        return True
+    except:
+        return False
 
 def add(ip, domain):
     Path = "ip.list"
+    if ipChk(ip) == False:
+        print(ip + " is not a standard ipv4/ipv6 address")
+        return
     #creates ip.list file if it doesn't exist
     if os.path.isfile(Path) == False:
         IpFile = open(Path,"w")
@@ -19,6 +32,11 @@ def add(ip, domain):
         for line in IpFile:
             entries = line.strip().split()
             if len(entries) != 0:
+                if domain == entries[1]:
+                    print("The domain "  + domain +
+                         " is already in use and won't be added\n"+
+                          "to the exception list")
+                    return
                 List.add(entries[0],entries[1])
         #adds new exception to the end of the list
         List.add(ip,domain)
@@ -52,7 +70,7 @@ def rm(NumId):
 
 def printList():
     Path = "ip.list"
-    #creates file if it doesn't exist
+    #Creates file if it doesn't exist
     if os.path.isfile(Path) == False:
         IpFile = open(Path,"w")
         List = IpDmList()

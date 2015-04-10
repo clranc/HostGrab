@@ -49,7 +49,7 @@ elif sys.argv[1] == "file":
 elif sys.argv[1] == "ipexc":
     #add menu for ip exceptions
     if sys.argv[2] == "add":
-         #arg 3 is the ip to add arg 4 is a domain name
+         #arg 3 is the ip to add and arg 4 is a correlating domain name
          ipExcp.add(sys.argv[3],sys.argv[4])
     #remove section for removing ip exceptions
     elif sys.argv[2] == "rm":
