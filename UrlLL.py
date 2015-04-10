@@ -8,6 +8,12 @@ class UrlList(object):
      def __init__(self):
          self.head = None 
          self.tail = None
+     
+     def isEmpty(self):
+         if self.head == None:
+             return True
+         else:
+             return False
 
      def add(self, url):
          NewNode = Node(url)
@@ -23,13 +29,18 @@ class UrlList(object):
          PrevNode = TravNode
          count = 1
          if num == 1:
-             TravNode = None
-             self.head = TravNode
+             #resets head node if the id is the first
+             self.head = self.head.next
+             #resets tail node
+             if self.head.next == None
+                 self.tail = self.head
              return
          while TravNode != None:
              if count == num:
-                  PrevNode.next = TravNode.next
-                  return
+                 PrevNode.next = TravNode.next
+                 if PrevNode.next == None:
+                     self.tail = PrevNode 
+                 return
 
              else:
                   PrevNode = TravNode

@@ -10,6 +10,12 @@ class IpDmList(object):
          self.head = None 
          self.tail = None
 
+     def isEmpty(self):
+         if self.head == None:
+             return True
+         else:
+             return False
+
      def add(self, ip, domain):
          NewNode = Node(ip, domain)
          if self.head == None:
@@ -20,25 +26,27 @@ class IpDmList(object):
              self.tail.next = NewNode
              self.tail = NewNode
 
-     def rm(self, num):
+     def rm(self, IdNum):
          TravNode = self.head
          PrevNode = TravNode
          count = 1
-         if num == 1:
-             TravNode = None
-             self.head = TravNode
+
+         if IdNum == 1:
+             self.head = self.head.next
+             if self.head.next == None:
+                 self.tail = self.head
              return
          while TravNode != None:
-             if count == num:
+             if count == IdNum:
                   PrevNode.next = TravNode.next
+                  if PrevNode.next == None:
+                     self.tail = PrevNode
                   return
 
              else:
                   PrevNode = TravNode
                   TravNode = TravNode.next
                   count = count + 1
-          
-         print("There is no IP and Domain with that ID")
 
      def fWrite(self, IpDomainFile):
          TravNode = self.head

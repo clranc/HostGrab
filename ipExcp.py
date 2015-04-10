@@ -1,10 +1,10 @@
 #IP and Domain linked list handler
 import os.path
 import ipaddress
-import textwrap
 from IpDmLL import IpDmList
 
-#IP Validator
+Path = "ip.list"
+#IP Validate
 def ipChk(ip):
     try:
         ipaddress.ip_address(str(ip))
@@ -13,7 +13,6 @@ def ipChk(ip):
         return False
 
 def add(ip, domain):
-    Path = "ip.list"
     if ipChk(ip) == False:
         print(ip + " is not a standard ipv4/ipv6 address")
         return
@@ -46,9 +45,9 @@ def add(ip, domain):
         return
 
 def rm(NumId):
-    Path = "ip.list"
     if os.path.isfile(Path) == False:
          IpFile = open(Path,"w")
+         print("The IP & Domain list is empty")
          return
     else:
          try:
@@ -62,6 +61,9 @@ def rm(NumId):
              entries = line.strip().split()
              if len(entries) != 0:
                  List.add(entries[0],entries[1])
+         if List.isEmpty() == True:
+             print("The IP & Domain list is empty")
+             return
          List.rm(NumId)
          IpFile = open(Path,"w")
          List.fWrite(IpFile)
@@ -69,7 +71,6 @@ def rm(NumId):
          return
 
 def printList():
-    Path = "ip.list"
     #Creates file if it doesn't exist
     if os.path.isfile(Path) == False:
         IpFile = open(Path,"w")

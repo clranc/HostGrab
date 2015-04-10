@@ -12,7 +12,7 @@ elif sys.argv[1] == "url":
         url.add(sys.argv[3])
     #rm url and file
     elif sys.argv[2] == "rm":
-        url.rm(int(sys.argv[3]))
+        url.rm(sys.argv[3])
     #print url list
     elif sys.argv[2] == "print":
         url.printList()
