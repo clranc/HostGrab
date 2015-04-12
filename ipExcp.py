@@ -77,6 +77,7 @@ def printList():
         List = IpDmList()
         List.printList()
         return
+    #If the file Exists it's contents are printed.  
     else:
         IpFile = open(Path,"r")
         List = IpDmList()

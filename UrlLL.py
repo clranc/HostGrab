@@ -24,28 +24,39 @@ class UrlList(object):
              self.tail.next = NewNode
              self.tail = NewNode
 
-     def rm(self, num):
+     def rm(self, IdNum):
          TravNode = self.head
          PrevNode = TravNode
          count = 1
-         if num == 1:
+         if IdNum == 1:
              #resets head node if the id is the first
              self.head = self.head.next
              #resets tail node
-             if self.head.next == None
+             if (self.head == None) or (self.head.next == None):
                  self.tail = self.head
              return
          while TravNode != None:
-             if count == num:
+             if count == IdNum:
                  PrevNode.next = TravNode.next
                  if PrevNode.next == None:
                      self.tail = PrevNode 
                  return
-
              else:
                   PrevNode = TravNode
                   TravNode = TravNode.next
                   count = count + 1
+
+     def search(self, IdNum):
+         TravNode = self.head
+         count = 1
+         while (count != IdNum) or (TravNode == None):
+             TravNode = TravNode.next
+             count = count + 1
+         if TravNode == None:
+             return None
+
+         return str(TravNode.url)
+
 
      def fWrite(self, UrlFile):
          TravNode = self.head

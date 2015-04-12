@@ -2,8 +2,9 @@
 import os.path
 from UrlLL import UrlList
 
+Path = "url.list"
+DLPath = "hlist/"
 def add(Url):
-    Path = "url.list"
     if os.path.isfile(Path) == False:
         UrlFile = open(Path,"w")
         List = UrlList()
@@ -16,7 +17,7 @@ def add(Url):
         List = UrlList()
         for line in UrlFile:
             entry = line.strip().split()
-            if len(line.strip().split())!=0:
+            if len(entry) != 0:
                 if Url == entry[0]:
                     print("This download url is already in use and will "+
                           "not be added")
@@ -27,9 +28,7 @@ def add(Url):
         List.fWrite(UrlFile)
         List.printList()
         return
-    
 def rm(NumId):
-    Path = "url.list"
     try:
         NumId = int(NumId)
     except ValueError:
@@ -51,7 +50,9 @@ def rm(NumId):
         if List.isEmpty() == True:
              print("The IP & Domain list is empty")
              return
-
+        DLFPath = DLPath + "hosts.id" + str(NumId)
+        if os.path.isfile(DLFPath) == True:
+            os.remove(DLFPath) 
         List.rm(NumId)
         UrlFile = open(Path,"w")
         List.fWrite(UrlFile)
@@ -60,7 +61,6 @@ def rm(NumId):
 
 def printList():
     List = None
-    Path = "url.list"
     if os.path.isfile(Path) == False:
         UrlFile = open(Path,"w")
         List = UrlList()

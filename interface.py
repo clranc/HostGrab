@@ -1,6 +1,7 @@
 import sys
 import url
 import ipExcp
+import fileMng
 
 if (len(sys.argv)) == 1:
     print("welcome to hostgrab") 
@@ -23,12 +24,18 @@ elif sys.argv[1] == "url":
 elif sys.argv[1] == "file":
     #download files that were added and then scan them
     if sys.argv[2] == "dl":
-    	pass
-    #update existing files/download newly added ones 
-    elif sys.argv[2] == "upd":
-        pass
+        fileMng.dl(sys.argv[3])
+    elif sys.argv[1] == "import":
+    #import host file based on its id
+        if sys.argv[2] == "id":
+            pass 
+    #import default host file 
+        elif sys.argv[2] == "null":
+            pass
+        else:
+            pass
 
-    #scan all or a specific downloaded host file
+    #A specific downloaded host file
     elif sys.argv[2] == "scan":
         pass
         #error message printed if the arguments are more then 4
@@ -60,15 +67,7 @@ elif sys.argv[1] == "ipexc":
          ipExcp.printList()
     else:
          print("improper arguments")
-elif sys.argv[1] == "import":
-    #import host file based on its id
-    if sys.argv[2] == "id":
-        pass
-    #import default host file 
-    elif sys.argv[2] == "null":
-        pass
-    else:
-        pass
+         pass
 #prints help message discussing command functions
 elif sys.argv[1] == "help":
     pass
