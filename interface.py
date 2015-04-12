@@ -70,6 +70,17 @@ elif sys.argv[1] == "ipexc":
          pass
 #prints help message discussing command functions
 elif sys.argv[1] == "help":
-    pass
+    print("Cmds: \turl\n"
+                "\t--add (host download url)\n"
+                "\t--rm (id number)\n"
+                "\t--print\n"
+                "\tipexc\n"
+                "\t--add (ipv4/ipv6 address) (correlating domain name)\n"
+                "\t--rm (id number)\n"
+                "\t--print\n"
+                "\tfile\n"
+                "\t--dl (id number)\n"
+                "\t--import (id number)\n"
+                "\t--swap\n")
 else:
     print("Improper command input")
