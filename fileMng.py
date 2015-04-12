@@ -1,6 +1,8 @@
 #File manager
 import os.path
+import shutil
 import urllib.request
+import urllib.error
 from UrlLL import UrlList
 
 ListPath = "url.list"
@@ -33,5 +35,22 @@ def dl(IdNum):
         print(link)
         print(DLDest)
         print("Downloading")
-        urllib.request.urlretrieve(link, DLDest)
-        print("Done")
+        try:
+            urllib.request.urlretrieve(link, DLDest)
+            print("Done")
+        except:
+            print("Broke yo")
+
+def hImport(IdNum):
+    try:
+        IdNum = int(IdNum)
+    except ValueError:
+        print("Invalid ID input")
+        return
+
+    UrlFile = open(ListPath,"r")
+    HFPath = DLPath + "hosts.id" + str(IdNum)
+    if os.path.isfile(HFPath) == True:
+        shutil.copy("ip.list","hosts.tmp")
+    else:
+        print("test")

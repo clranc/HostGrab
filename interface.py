@@ -1,11 +1,14 @@
 import sys
+import os
 import url
 import ipExcp
 import fileMng
 
-if (len(sys.argv)) == 1:
-    print("welcome to hostgrab") 
+if (os.getuid() != 0):
+    print("You need SU access to use HostGrab")
 
+elif (len(sys.argv)) == 1:
+    print("welcome to hostgrab") 
 #url command set
 elif sys.argv[1] == "url":
     #add url to download list
@@ -28,7 +31,7 @@ elif sys.argv[1] == "file":
     elif sys.argv[1] == "import":
     #import host file based on its id
         if sys.argv[2] == "id":
-            pass 
+           fileMng.hImport(sys.argv[3])  
     #import default host file 
         elif sys.argv[2] == "null":
             pass
