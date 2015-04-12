@@ -59,7 +59,7 @@ def rm(NumId):
          List = IpDmList()
          for line in IpFile:
              entries = line.strip().split()
-             if len(entries) != 0:
+             if len(entries) != -1:
                  List.add(entries[0],entries[1])
          if List.isEmpty() == True:
              print("The IP & Domain list is empty")

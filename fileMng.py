@@ -7,7 +7,10 @@ from UrlLL import UrlList
 
 ListPath = "url.list"
 DLPath = "hlist/"
-InstPath = "/etc/"
+IpListPath = "ip.list"
+TmpPathA = "hosts.tmpA"
+TmpPathB = "hosts.tmpB"
+InstPath = "/etc/hosts"
 
 def dl(IdNum):
     count = 1
@@ -47,10 +50,27 @@ def hImport(IdNum):
     except ValueError:
         print("Invalid ID input")
         return
-
-    UrlFile = open(ListPath,"r")
     HFPath = DLPath + "hosts.id" + str(IdNum)
-    if os.path.isfile(HFPath) == True:
-        shutil.copy("ip.list","hosts.tmp")
+    if os.path.isfile(HFPath) == False:
+        print("File doesn't exist")
     else:
-        print("test")
+        shutil.copy2(IpListPath,TmpPathA)
+    IpFile = open(HFPath,"r")
+    TmpFile = open(TmpPathA,"a")
+    TmpFile.write("#HostGrab IP & Domain inclusions\n\n")
+
+    for line in IpFile:
+        TmpFile.write(line)
+    
+    shutil.move(TmpPathA,InstPath)
+
+def nullSwap():
+    if os.path.isfile(TmpPathA) == False:
+        TmpFile = open(TmpPathA,"w")
+        TmpFile.write("127.0.0.1\t\tlocalhost\n")
+        TmpFile.write("::1\t\t\tlocalhost\n")
+        TmpFile.close()
+
+    shutil.copy2(InstPath,TmpPathB)
+    shutil.move(TmpPathA,InstPath)
+    os.rename(TmpPathB,TmpPathA)

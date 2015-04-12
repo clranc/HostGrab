@@ -28,16 +28,13 @@ elif sys.argv[1] == "file":
     #download files that were added and then scan them
     if sys.argv[2] == "dl":
         fileMng.dl(sys.argv[3])
-    elif sys.argv[1] == "import":
+    elif sys.argv[2] == "import":
     #import host file based on its id
-        if sys.argv[2] == "id":
-           fileMng.hImport(sys.argv[3])  
+        if sys.argv[3] == "swap":
+            fileMng.nullSwap()
     #import default host file 
-        elif sys.argv[2] == "null":
-            pass
         else:
-            pass
-
+            fileMng.hImport(sys.argv[3])
     #A specific downloaded host file
     elif sys.argv[2] == "scan":
         pass
