@@ -5,6 +5,7 @@ import urllib.request
 import urllib.error
 from UrlLL import UrlList
 
+#File paths
 ListPath = "url.list"
 DLPath = "hlist/"
 IpListPath = "ip.list"

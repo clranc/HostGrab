@@ -30,12 +30,13 @@ elif sys.argv[1] == "file":
         fileMng.dl(sys.argv[3])
     elif sys.argv[2] == "import":
     #import host file based on its id
-        if sys.argv[3] == "swap":
-            fileMng.nullSwap()
+        fileMng.hImport(sys.argv[3])
+    #swap default host file
+    elif sys.argv[2] == "swap":
+        fileMng.nullSwap()
     #import default host file 
-        else:
-            fileMng.hImport(sys.argv[3])
-    #A specific downloaded host file
+  
+    #Scan a specificly downloaded host file
     elif sys.argv[2] == "scan":
         pass
         #error message printed if the arguments are more then 4
@@ -51,7 +52,9 @@ elif sys.argv[1] == "file":
         #Prints error message
         else:
             print("Improper command input")
-	
+    else:
+        print("Improper command input")
+
 #ip exception command set
 elif sys.argv[1] == "ipexc":
     #add menu for ip exceptions
