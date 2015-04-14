@@ -65,11 +65,17 @@ def hImport(IdNum):
     TmpFile = open(TmpPathA,"a")
     TmpFile.write("#HostGrab IP & Domain inclusions\n\n")
 
+    print("Importing....")
+
     for line in IpFile:
         TmpFile.write(line)
-    
-    shutil.move(TmpPathA,InstPath)
 
+    try:
+        shutil.move(TmpPathA,InstPath)
+        print("Import was successful")
+    except:
+        print("Import failed")
+    
 def nullSwap():
     if os.path.isfile(TmpPathA) == False:
         TmpFile = open(TmpPathA,"w")

@@ -33,7 +33,7 @@ class IpDmList(object):
 
          if IdNum == 1:
              self.head = self.head.next
-             if self.head.next == None:
+             if (self.head == None) or (self.head.next == None):
                  self.tail = self.head
              return
          while TravNode != None:
