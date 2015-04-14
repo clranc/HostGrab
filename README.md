@@ -1,7 +1,7 @@
 HostGrab
 ========
 This is a tool meant for people who enjoy blocking ads with a host file but
-find it tedious to have navigate to the one they like, download it, and thenmanually import it to their root directory. 
+find it tedious to have navigate to the one they like, download it, and then manually import it to their root directory. 
 
 ###Useful Features 
 ------------------
