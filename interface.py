@@ -34,24 +34,10 @@ elif sys.argv[1] == "file":
     #swap default host file
     elif sys.argv[2] == "swap":
         fileMng.nullSwap()
-    #import default host file 
   
     #Scan a specificly downloaded host file
     elif sys.argv[2] == "scan":
-        pass
-        #error message printed if the arguments are more then 4
-        if len(sys.argv) > 4:
-            print("Improper argument input")
-
-        #Scans all files 
-        elif sys.argv[3] == "all":
-            pass
-        #Scans a particular file
-        #elif is_number(sys.argv[3]):
-
-        #Prints error message
-        else:
-            print("Improper command input")
+        fileMng.scan(sys.argv[3])
     else:
         print("Improper command input")
 
