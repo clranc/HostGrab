@@ -95,6 +95,9 @@ def hImport(IdNum):
         return
 
     #ip.list is copied to act as
+    if os.path.isfile(IpListPath) == False:
+       open(IpListPath,'a').close()
+
     shutil.copy2(IpListPath,TmpPathA)
     
     #File for host file being read
