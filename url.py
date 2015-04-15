@@ -43,17 +43,25 @@ def rm(NumId):
     else:
         UrlFile = open(Path,"r")
         List = UrlList()
+        count = 0
+
         for line in UrlFile:
             if len(line.strip().split())!=0:
               List.add((line.strip().split())[0])
+              count += 1
 
         if List.isEmpty() == True:
              print("The IP & Domain list is empty")
              return
         DLFPath = DLPath + "hosts.id" + str(NumId)
-        if os.path.isfile(DLFPath) == True:
-            os.remove(DLFPath) 
+
         List.rm(NumId)
+        print("Link removed\n")
+
+        if os.path.isfile(DLFPath) == True:
+            os.remove(DLFPath)
+            print("& hosts.id"+str(NumId) + " has been deleted\n")
+
         UrlFile = open(Path,"w")
         List.fWrite(UrlFile)
         List.printList()

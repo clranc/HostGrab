@@ -12,56 +12,94 @@ ListPath = "url.list"
 HostPath = "hlist/"
 DLPath = "hlist/hosts.id"
 IpListPath = "ip.list"
+InstPath = "/etc/hosts"
+#Temporary Files
 TmpPathA = "hosts.tmpA"
 TmpPathB = "hosts.tmpB"
-InstPath = "/etc/hosts"
 
+#Download Function
 def dl(IdNum):
-    count = 1
+   
+    #Id Check 
     try:
         IdNum = int(IdNum)
     except ValueError:
         print("Invalid ID input")
         return
-
+    
+    #Checks if url.list exists and creates it if it doesn't
     if os.path.isfile(ListPath) == False:
         UrlFile = open(ListPath,"w")
         print("List is empty")
         return
+
     else:
         UrlFile = open(ListPath,"r")
+        #Creates Linkd List Object for filtering thorugh download
+        #URL's 
         List = UrlList()
         for line in UrlFile:
             entry = line.strip().split()
             if len(entry) != 0:
                 List.add(entry[0])
+
+        #Pulls URL from list
         link= List.search(IdNum)
+
+        #If the Download Directory doesn't exist it is created
         if not os.path.exists(HostPath):
             os.makedirs(HostPath)
+
+        #Sets file path and name for host file being downloaded
         DLDest = DLPath + str(IdNum)
-        print(link)
-        print(DLDest)
-        print("Downloading")
+
+        #Message to show that the download is in progress
+        print("Downloading from " + link)
+
+        #Try catch is used for downloading the file to the specified
+	#directory
         try:
             urllib.request.urlretrieve(link, DLDest)
             print("Done")
+
+        #If interrupted a failure message is printed and returns
         except:
-            print("Broke yo")
+            print("The download was interrupted")
             return
+
+        #If the download passes the file is scanned to check for 
+        #improper or suspicious IPs
         scan(IdNum)
 
+#Import Function for creating and importing the host file to the 
+#root directory
 def hImport(IdNum):
+
+    #Checks if ID number entered is a valid integer
     try:
         IdNum = int(IdNum)
+
+    #If the the entered value isn't an integer an error message 
+    #is printed and the function returns 
     except ValueError:
         print("Invalid ID input")
         return
+
+    #Creates the path for the new host file to be created
     HFPath = DLPath + str(IdNum)
+    
+    #File path is checked to see if it exists.
+    #If it doesn't the an error message is printed 
     if os.path.isfile(HFPath) == False:
         print("File doesn't exist")
-    else:
-        shutil.copy2(IpListPath,TmpPathA)
+        return
+
+    #ip.list is copied to act as
+    shutil.copy2(IpListPath,TmpPathA)
+    
+    #File for host file being read
     IpFile = open(HFPath,"r")
+    #
     TmpFile = open(TmpPathA,"a")
     TmpFile.write("#HostGrab IP & Domain inclusions\n\n")
 
