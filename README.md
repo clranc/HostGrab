@@ -3,6 +3,9 @@ HostGrab
 This is a tool meant for people who enjoy blocking ads with a host file but
 find it tedious to have navigate to the one they like, download it, and then manually import it to their root directory. 
 
+I made this as part of a personal project to teach myself python as well as how to use git.  So my code documentation 
+doesn't meet up to python standards yet which I'm still working on.   
+
 ###Useful Features 
 ------------------
 
