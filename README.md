@@ -6,7 +6,7 @@ find it tedious to have navigate to the one they like, download it, and then man
 I made this as part of a personal project to teach myself python as well as how to use git.  So my code documentation 
 doesn't meet up to python standards yet which I'm still working on.   
 
-###Useful Features 
+Useful Features 
 ------------------
 
  - Managing download links for various host files 
@@ -15,9 +15,9 @@ doesn't meet up to python standards yet which I'm still working on.
  - If you're the kind of person who perfers a host file with an ungodly amount of ad domains to block (and as a result blocks websites you need to use) a swap feature is included that swaps your imported host file with a default one.  After which you can run the command again to load your host back in to continue blocking away.  
 
 
-###Commands
+Commands
 -----------
- - url
+ - url 
    - add
    - rm
    - print
